@@ -64,7 +64,7 @@ namespace Monogame_1._5_Enumeration_Recap
             fruit3Texture = Content.Load<Texture2D>("Images/fruit3");
             fruit4Texture = Content.Load<Texture2D>("Images/fruit4");
 
-            instructionFont = Content.Load<SpriteFont>("Fonts/InstructionFont");
+            instructionFont = Content.Load<SpriteFont>("InstructionFont");
         }
 
         protected override void Update(GameTime gameTime)
@@ -97,6 +97,31 @@ namespace Monogame_1._5_Enumeration_Recap
                 }              
 
             }
+
+            else if (fruitState == FruitState.ReallyMouldy)
+            {
+                message = "Hit enter to travel to the future.";
+                if(keyboardState.IsKeyDown(Keys.Enter))
+                {
+
+                    fruitState = FruitState.Rotten;
+
+                }
+ 
+            }
+
+            else if (fruitState == FruitState.Rotten)
+            {
+                message = "Right click the mouse to travel to the distant past.";
+
+                if(mouseState.RightButton == ButtonState.Pressed)
+                {
+                    fruitState = FruitState.Fresh;
+                }
+
+
+            }
+
 
                 base.Update(gameTime);
         }
